@@ -41,6 +41,34 @@ Some keys may be combined with the ++shift++ key. In the case of letters, this w
 
 Many keys can also be combined with ++ctrl++ which will prefix the key with `ctrl+`. For instance, ++ctrl+p++ will produce an event with `key="ctrl+p"`.
 
+##### Key identifiers
+
+Textual represents every key with a string identifier. Printable letters and numbers
+use the character itself, while named keys use lower-case names such as `enter`,
+`escape`, `pageup`, or `f1`. Punctuation is represented by its Unicode name, converted
+to lower-case words separated by underscores. A few common characters use shorter
+names:
+
+| Key            | Identifier      |
+| -------------- | --------------- |
+| ++question++   | `question_mark` |
+| ++slash++      | `slash`         |
+| ++backslash++  | `backslash`     |
+| ++underscore++ | `underscore`    |
+| ++space++      | `space`         |
+
+Modifiers are added before the key name and separated with `+`, as in `ctrl+p` or
+`ctrl+shift+left`. Run `textual keys` and press a key combination to see the identifier
+reported by your terminal.
+
+When Textual displays a binding in a [Footer](../widgets/footer.md) or key panel, it
+converts the identifier to a compact label. For example, `right_square_bracket` is
+displayed as `]`, `ctrl+right_square_bracket` as `^]`, and `delete` as `del`. This label
+is presentation only; bindings and key events continue to use the identifier. Set the
+`key_display` argument of [Binding][textual.binding.Binding] to provide a custom label,
+or override [`App.get_key_display()`][textual.app.App.get_key_display] to customize key
+labels for the entire app.
+
 !!! warning
 
     Not all keys combinations are supported in terminals and some keys may be intercepted by your OS. If in doubt, run `textual keys` from the command line.
